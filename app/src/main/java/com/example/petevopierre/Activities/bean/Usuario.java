@@ -3,12 +3,14 @@ package com.example.petevopierre.Activities.bean;
 import java.io.Serializable;
 
 import mobi.stos.podataka_lib.annotations.Column;
-import mobi.stos.podataka_lib.annotations.ForeignKey;
 import mobi.stos.podataka_lib.annotations.PrimaryKey;
 
 public class Usuario implements Serializable {
     @PrimaryKey(autoIncrement = false)
-    private int id;
+    private int idlojista;
+
+    @Column
+    private String nomeLojista;
 
     @Column
     private int idloja;
@@ -16,12 +18,20 @@ public class Usuario implements Serializable {
     @Column
     private String email;
 
-    public int getId() {
-        return id;
+    public String getNomeLojista() {
+        return nomeLojista;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNomeLojista(String nomeLojista) {
+        this.nomeLojista = nomeLojista;
+    }
+
+    public int getIdlojista() {
+        return idlojista;
+    }
+
+    public void setIdlojista(int idlojista) {
+        this.idlojista = idlojista;
     }
 
     public String getEmail() {
