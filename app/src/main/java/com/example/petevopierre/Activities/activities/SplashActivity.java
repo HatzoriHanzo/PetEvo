@@ -1,4 +1,4 @@
-package com.example.petevopierre.Activities.Activities;
+package com.example.petevopierre.Activities.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -10,22 +10,18 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PetEvoPierre"
-
-
-        >
-
-        <activity android:name=".Activities.Activities.QrCodeActivity"></activity>
-        <activity android:name=".Activities.Activities.HomeActivity" />
-        <activity android:name=".Activities.Activities.LoginActivity" />
-        <activity android:name=".Activities.Activities.SplashActivity">
+        android:theme="@style/Theme.PetEvoPierre">
+        <activity android:name=".Activities.activities.PontuarActivity"></activity>
+        <activity android:name=".Activities.activities.QrCodeActivity" />
+        <activity android:name=".Activities.activities.HomeActivity" />
+        <activity android:name=".Activities.activities.LoginActivity" />
+        <activity android:name=".Activities.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.activities.HomeActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/ic_toolbar_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+    <ImageView
+        android:id="@+id/btn_sair"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_vector_logout"
+
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/logout_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        android:text="Sair"
+        android:textColor="#E4E1E1"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@id/btn_sair"></TextView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="255dp"
+        android:layout_height="272dp"
+        android:layout_marginBottom="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginBottom="44dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Como Pontuar:"
+            android:textSize="8sp"></TextView>
+
+        <TextView
+            android:layout_width="191dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="75dp"
+            android:layout_marginBottom="11dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Como pontuar: a cada R$ 20 reais em compras, ganhe 10% de desconto na compra seguinte."
+            android:textSize="8sp"></TextView>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="119dp"
+            android:layout_height="43dp"
+            android:layout_above="@+id/editTxtQuantidade"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="77dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Total de cupons:"
+            android:textColor="#8EC640"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTxtQuantidade"
+            android:layout_width="143dp"
+            android:layout_height="101dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="63dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="73dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:text="5"
+            android:textColor="#4A8000"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtView_Descricao"
+        android:layout_width="263dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Atribua o valor do cupom pela quantidade."
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtText_adcQuantidade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHelloNome" />
+
+    <EditText
+        android:id="@+id/edtText_adcQuantidade"
+        android:layout_width="257dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/montserrat"
+        android:inputType="number"
+        android:text="Adicione a quantidade"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="@+id/txtView_Descricao"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@+id/txtView_Descricao"
+        app:layout_constraintTop_toBottomOf="@+id/txtView_Descricao"></EditText>
+
+    <TextView
+        android:id="@+id/textViewHelloNome"
+        android:layout_width="263dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Quantidade:"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtView_Descricao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.523" />
+
+    <Button
+        android:id="@+id/btn_pontuar_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="51dp"
+        android:backgroundTint="#63A308"
+        android:text="Atribuir cupons"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.764" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

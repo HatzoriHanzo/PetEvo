@@ -1,4 +1,4 @@
-package com.example.petevopierre.Activities.Activities;
+package com.example.petevopierre.Activities.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,10 +25,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         usuario = (Usuario) getIntent().getSerializableExtra("USUARIO");
-        Log.e("eafaefaeffea","sup"+usuario.getNomeLojista());
         mNome = findViewById(R.id.textViewHelloNome);
         btnHome = findViewById(R.id.btn_sair);
         btn_baixarVoucher = findViewById(R.id.btn_pontuar_cliente);
+        btn_pontuarCliente = findViewById(R.id.btn_pontuar_cliente);
         mNome.setText("Olá,"+usuario.getNomeLojista());
 
         btnHome.setOnClickListener(v -> {
@@ -39,6 +38,15 @@ public class HomeActivity extends AppCompatActivity {
         btn_baixarVoucher.setOnClickListener(v -> {
             btnVoucher();
         });
+
+        btn_pontuarCliente.setOnClickListener(v -> {
+            pontuarCliente();
+        });
+
+    }
+
+    private void pontuarCliente() {
+        startActivity(new Intent(getBaseContext(),QrCodeActivity.class));
     }
 
     public void btnVoucher(){
@@ -48,9 +56,6 @@ public class HomeActivity extends AppCompatActivity {
     public void btnHome() {
         startActivity(new Intent(getBaseContext(), LoginActivity.class));
     }
-
-
-
 
 
 }

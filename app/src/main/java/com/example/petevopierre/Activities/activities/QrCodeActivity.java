@@ -1,4 +1,4 @@
-package com.example.petevopierre.Activities.Activities;
+package com.example.petevopierre.Activities.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -19,6 +20,15 @@ import com.example.petevopierre.Activities.Util.Util;
 import com.example.petevopierre.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import mobi.stos.httplib.HttpAsync;
+import mobi.stos.httplib.inter.FutureCallback;
 
 public class QrCodeActivity extends AppCompatActivity {
 
@@ -31,14 +41,11 @@ public class QrCodeActivity extends AppCompatActivity {
 
         Window window = this.getWindow();
 
-        // clear FLAG_TRANSLUCENT_STATUS flag:
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-// finally change the color
-        window.setStatusBarColor(this.getResources().getColor(R.color.design_default_color_primary_variant));
+        window.setStatusBarColor(this.getResources().getColor(R.color.white));
 
 
         btnQrcode.setOnClickListener(view -> {
@@ -55,10 +62,58 @@ public class QrCodeActivity extends AppCompatActivity {
 
         if (result != null) {
             if (result.getContents() != null) {
-//                SharedPreferences.Editor editor = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE).edit();
-//                editor.putString(Constants.BASE_URL, result.getContents());
-//                editor.apply();
-                Toast.makeText(this, "loggggggggg " +result.getContents(), Toast.LENGTH_SHORT).show();
+                SharedPreferences.Editor editor = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE).edit();
+                editor.putInt(Constants.BASE_URL, Integer.parseInt(result.getContents()));
+                try {
+                    HttpAsync httpAsync = new HttpAsync(new URL(getString(R.string.base_url) + "lojista/getRegraLoja/"+result.getContents()));
+                    httpAsync.setDebug(true);
+                    httpAsync.get(new FutureCallback() {
+                        @Override
+                        public void onBeforeExecute() {
+
+                        }
+
+                        @Override
+                        public void onAfterExecute() {
+
+                        }
+
+                        @Override
+                        public void onSuccess(int responseCode, Object object) {
+                            if (responseCode == 200){
+                                int lojaid;
+                                String tipoPontucao;
+                                JSONObject jsonObject = (JSONObject) object;
+                                try {
+                                    lojaid = (jsonObject.getInt("id"));
+                                    tipoPontucao = (jsonObject.getString("tipoPontuacaoEnum"));
+                                    Toast.makeText(QrCodeActivity.this, "tipo de pontuação:"+tipoPontucao, Toast.LENGTH_SHORT).show();
+                                    Intent intent = (new Intent(QrCodeActivity.this,PontuarActivity.class));
+                                    intent.putExtra("TIPOPONTUACAO",tipoPontucao);
+                                    intent.putExtra("ID",lojaid);
+                                    editor.putInt("ID",lojaid);
+                                    editor.putString("TIPOPONTUACAO",tipoPontucao);
+                                    editor.apply();
+                                    startActivity(intent);
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Exception exception) {
+
+                        }
+                    });
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
 
 //                finishAffinity();
 //                startActivity(new Intent(this, LoginActivity.class));

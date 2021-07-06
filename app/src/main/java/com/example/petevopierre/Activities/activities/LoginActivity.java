@@ -1,4 +1,4 @@
-package com.example.petevopierre.Activities.Activities;
+package com.example.petevopierre.Activities.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +20,6 @@ import java.net.URL;
 
 import mobi.stos.httplib.HttpAsync;
 import mobi.stos.httplib.inter.FutureCallback;
-
-import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity {
     private Button btn_entrar;
@@ -72,10 +70,10 @@ public class LoginActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            //usuarioBo.clean();
+                            usuarioBo.clean();
                             usuarioBo.insert(usuario);
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            intent.putExtra("USUARIO",usuario);
+                            intent.putExtra("USUARIO", usuario);
                             startActivity(intent);
                         }
                     }

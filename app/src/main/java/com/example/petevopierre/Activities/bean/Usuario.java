@@ -3,9 +3,11 @@ package com.example.petevopierre.Activities.bean;
 import java.io.Serializable;
 
 import mobi.stos.podataka_lib.annotations.Column;
+import mobi.stos.podataka_lib.annotations.Entity;
 import mobi.stos.podataka_lib.annotations.PrimaryKey;
-
+@Entity
 public class Usuario implements Serializable {
+
     @PrimaryKey(autoIncrement = false)
     private int idlojista;
 
@@ -17,6 +19,7 @@ public class Usuario implements Serializable {
 
     @Column
     private String email;
+
 
     public String getNomeLojista() {
         return nomeLojista;
