@@ -91,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/editTxtQuantidade"
             android:layout_width="143dp"
             android:layout_height="101dp"
@@ -103,8 +103,7 @@
             android:layout_marginBottom="73dp"
             android:ems="10"
             android:gravity="center"
-            android:inputType="number"
-            android:text="5"
+            android:text="0"
             android:textColor="#4A8000"
             android:textSize="30sp" />
     </RelativeLayout>
@@ -115,7 +114,6 @@
         android:layout_height="36dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/montserrat"
-        android:text="Atribua o valor do cupom pela quantidade."
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/edtText_adcQuantidade"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +128,6 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat"
         android:inputType="number"
-        android:text="Adicione a quantidade"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="@+id/txtView_Descricao"
@@ -144,7 +141,6 @@
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Quantidade:"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/txtView_Descricao"
         app:layout_constraintEnd_toEndOf="parent"

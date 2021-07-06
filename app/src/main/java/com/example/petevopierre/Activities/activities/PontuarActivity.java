@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,10 +14,12 @@ import android.widget.Toast;
 import com.example.petevopierre.Activities.Util.Constants;
 import com.example.petevopierre.R;
 
+import org.w3c.dom.Text;
+
 public class PontuarActivity extends AppCompatActivity {
     private int id;
     private String tipo;
-    private TextView textView_Tipo, textView_Descricao;
+    private TextView textView_Tipo, textView_Descricao, textView_Resultado;
     private EditText editText_Tipo2;
     private Button btn_pontuar_cliente;
     private double quantidade,soma;
@@ -36,11 +40,19 @@ public class PontuarActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+
+
+        super.onResume();
+    }
+
     private void pontuar() {
         quantidade = Double.parseDouble(String.valueOf(editText_Tipo2.getText()));
         soma = quantidade / 3;
-//        if (soma >)
- 
+        textView_Resultado.setText(""+soma);
+
+
 
     }
 
@@ -49,13 +61,14 @@ public class PontuarActivity extends AppCompatActivity {
         textView_Tipo = findViewById(R.id.textViewHelloNome);
         textView_Descricao = findViewById(R.id.txtView_Descricao);
         editText_Tipo2 = findViewById(R.id.edtText_adcQuantidade);
+        textView_Resultado = findViewById(R.id.editTxtQuantidade);
 
-        if (tipo == "QUANTIDADE") {
+        if (tipo.equals("QUANTIDADE")) {
             textView_Tipo.setText("Quantidade:");
-            textView_Descricao.setText("Atribua o valor do cupom pela quantidade.");
-            editText_Tipo2.setText("Adicione a quantidade");
+            textView_Descricao.setHint("Atribua o valor do cupom pela quantidade.");
+            editText_Tipo2.setHint("Adicione a quantidade");
         }
-        if (tipo == "VALOR") {
+        if (tipo.equals("VALOR")) {
             textView_Tipo.setText("Valor:");
             textView_Descricao.setText("Atribua o valor do cupom.");
             editText_Tipo2.setText("Adicione o valor");

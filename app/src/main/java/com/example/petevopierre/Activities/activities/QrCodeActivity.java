@@ -87,7 +87,7 @@ public class QrCodeActivity extends AppCompatActivity {
                                 try {
                                     lojaid = (jsonObject.getInt("id"));
                                     tipoPontucao = (jsonObject.getString("tipoPontuacaoEnum"));
-                                    Toast.makeText(QrCodeActivity.this, "tipo de pontuação:"+tipoPontucao, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(QrCodeActivity.this, "tipo de pontuação:"+tipoPontucao, Toast.LENGTH_SHORT).show();
                                     Intent intent = (new Intent(QrCodeActivity.this,PontuarActivity.class));
                                     intent.putExtra("TIPOPONTUACAO",tipoPontucao);
                                     intent.putExtra("ID",lojaid);
