@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 import com.example.petevopierre.Activities.Util.Constants;
 import com.example.petevopierre.R;
 
-import org.w3c.dom.Text;
 
 public class PontuarActivity extends AppCompatActivity {
     private int id;
@@ -25,7 +22,7 @@ public class PontuarActivity extends AppCompatActivity {
     private EditText editText_Tipo2;
     private Button btn_pontuar_cliente;
     private ImageView btn_Home;
-    private double quantidade, soma;
+    private double quantidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +43,7 @@ public class PontuarActivity extends AppCompatActivity {
             Intent intent = (new Intent(this, SucessoActivity.class));
             startActivity(intent);
 
-            btn_Home.setOnClickListener(v1 -> {
-                btnHome();
-            });
+            btn_Home.setOnClickListener(v1 ->btnHome());
 
         });
 

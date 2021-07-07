@@ -50,9 +50,7 @@ public class QrCodeActivity extends AppCompatActivity {
         window.setStatusBarColor(this.getResources().getColor(R.color.white));
 
 
-        btnQrcode.setOnClickListener(view -> {
-            checkPhonePermission();
-        });
+        btnQrcode.setOnClickListener(view -> checkPhonePermission());
 
 
     }
