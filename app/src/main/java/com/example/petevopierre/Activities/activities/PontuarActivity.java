@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,10 +19,9 @@ import com.example.petevopierre.R;
 public class PontuarActivity extends AppCompatActivity {
     private int id;
     private String tipo;
-    private TextView textView_Tipo, textView_Descricao, textView_Resultado;
+    private TextView textView_Tipo, textView_Descricao, textView_Resultado,btn_Home;
     private EditText editText_Tipo2;
     private Button btn_pontuar_cliente;
-    private ImageView btn_Home;
     private double quantidade;
 
     @Override
@@ -30,7 +30,7 @@ public class PontuarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pontuar);
         SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE);
         btn_pontuar_cliente = findViewById(R.id.btn_pontuar_cliente);
-        btn_Home = findViewById(R.id.btn_sair);
+        btn_Home = findViewById(R.id.logout_text);
         id = preferences.getInt("ID", 0);
         tipo = preferences.getString("TIPOPONTUACAO", "");
         setViewTexts();
@@ -70,6 +70,7 @@ public class PontuarActivity extends AppCompatActivity {
 
     public void btnHome() {
         startActivity(new Intent(getBaseContext(), LoginActivity.class));
+        Log.e("aaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaa");
     }
 
 
