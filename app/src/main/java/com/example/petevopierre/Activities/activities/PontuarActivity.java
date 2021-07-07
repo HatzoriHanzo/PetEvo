@@ -2,12 +2,14 @@ package com.example.petevopierre.Activities.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +24,8 @@ public class PontuarActivity extends AppCompatActivity {
     private TextView textView_Tipo, textView_Descricao, textView_Resultado;
     private EditText editText_Tipo2;
     private Button btn_pontuar_cliente;
-    private double quantidade,soma;
+    private ImageView btn_Home;
+    private double quantidade, soma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +33,23 @@ public class PontuarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pontuar);
         SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE);
         btn_pontuar_cliente = findViewById(R.id.btn_pontuar_cliente);
+        btn_Home = findViewById(R.id.btn_sair);
         id = preferences.getInt("ID", 0);
         tipo = preferences.getString("TIPOPONTUACAO", "");
         setViewTexts();
 
         btn_pontuar_cliente.setOnClickListener(v -> {
             pontuar();
+            Toast.makeText(this,
+                    "Os pontos estão sendo computados...",
+                    Toast.LENGTH_LONG).show();
+            Intent intent = (new Intent(this, SucessoActivity.class));
+            startActivity(intent);
+
+            btn_Home.setOnClickListener(v1 -> {
+                btnHome();
+            });
+
         });
 
     }
@@ -48,12 +62,19 @@ public class PontuarActivity extends AppCompatActivity {
     }
 
     private void pontuar() {
+        int count = 0;
+
         quantidade = Double.parseDouble(String.valueOf(editText_Tipo2.getText()));
-        soma = quantidade / 3;
-        textView_Resultado.setText(""+soma);
+        for (int i = 3; i <= quantidade; i += 3) {
+            count++;
+        }
+        textView_Resultado.setText("");
+        textView_Resultado.setText("" + count);
 
+    }
 
-
+    public void btnHome() {
+        startActivity(new Intent(getBaseContext(), LoginActivity.class));
     }
 
 
