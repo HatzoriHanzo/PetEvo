@@ -31,13 +31,15 @@ import mobi.stos.httplib.HttpAsync;
 import mobi.stos.httplib.inter.FutureCallback;
 
 public class QrCodeActivity extends AppCompatActivity {
-
+    private boolean pontuar;
     private Button btnQrcode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code);
         btnQrcode = findViewById(R.id.btnQrcode);
+        pontuar = (boolean) getIntent().getSerializableExtra("PONTUAR");
 
         Window window = this.getWindow();
 
@@ -65,7 +67,7 @@ public class QrCodeActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE).edit();
                 editor.putInt(Constants.BASE_URL, Integer.parseInt(result.getContents()));
                 try {
-                    HttpAsync httpAsync = new HttpAsync(new URL(getString(R.string.base_url) + "lojista/getRegraLoja/"+result.getContents()));
+                    HttpAsync httpAsync = new HttpAsync(new URL(getString(R.string.base_url) + "lojista/getRegraLoja/" + result.getContents()));
                     httpAsync.setDebug(true);
                     httpAsync.get(new FutureCallback() {
                         @Override
@@ -80,25 +82,44 @@ public class QrCodeActivity extends AppCompatActivity {
 
                         @Override
                         public void onSuccess(int responseCode, Object object) {
-                            if (responseCode == 200){
+                            if (responseCode == 200) {
                                 int lojaid;
                                 String tipoPontucao;
                                 JSONObject jsonObject = (JSONObject) object;
-                                try {
-                                    lojaid = (jsonObject.getInt("id"));
-                                    tipoPontucao = (jsonObject.getString("tipoPontuacaoEnum"));
+                                if (pontuar) {
+                                    try {
+                                        lojaid = (jsonObject.getInt("id"));
+                                        tipoPontucao = (jsonObject.getString("tipoPontuacaoEnum"));
 //                                    Toast.makeText(QrCodeActivity.this, "tipo de pontuação:"+tipoPontucao, Toast.LENGTH_SHORT).show();
-                                    Intent intent = (new Intent(QrCodeActivity.this,PontuarActivity.class));
-                                    intent.putExtra("TIPOPONTUACAO",tipoPontucao);
-                                    intent.putExtra("ID",lojaid);
-                                    editor.putInt("ID",lojaid);
-                                    editor.putString("TIPOPONTUACAO",tipoPontucao);
-                                    editor.apply();
-                                    startActivity(intent);
+                                        Intent intent = (new Intent(QrCodeActivity.this, PontuarActivity.class));
+                                        intent.putExtra("TIPOPONTUACAO", tipoPontucao);
+                                        intent.putExtra("ID", lojaid);
+                                        editor.putInt("ID", lojaid);
+                                        editor.putString("TIPOPONTUACAO", tipoPontucao);
+                                        editor.apply();
+                                        startActivity(intent);
 
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                if (!pontuar) {
+                                    try {
+                                        lojaid = (jsonObject.getInt("id"));
+                                        tipoPontucao = (jsonObject.getString("tipoPontuacaoEnum"));
+//                                    Toast.makeText(QrCodeActivity.this, "tipo de pontuação:"+tipoPontucao, Toast.LENGTH_SHORT).show();
+                                        Intent intent = (new Intent(QrCodeActivity.this, SucessoActivity.class));
+                                        intent.putExtra("TIPOPONTUACAO", tipoPontucao);
+                                        intent.putExtra("ID", lojaid);
+                                        editor.putInt("ID", lojaid);
+                                        editor.putString("TIPOPONTUACAO", tipoPontucao);
+                                        editor.apply();
+                                        startActivity(intent);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
 
 

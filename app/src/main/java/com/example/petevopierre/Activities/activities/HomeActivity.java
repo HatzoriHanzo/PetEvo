@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
         usuario = (Usuario) getIntent().getSerializableExtra("USUARIO");
         mNome = findViewById(R.id.textViewHelloNome);
         btnHome = findViewById(R.id.btn_sair);
-        btn_baixarVoucher = findViewById(R.id.btn_pontuar_cliente);
+        btn_baixarVoucher = findViewById(R.id.btn_baixar_voucher);
         btn_pontuarCliente = findViewById(R.id.btn_pontuar_cliente);
         mNome.setText("Olá,"+usuario.getNomeLojista());
 
@@ -46,11 +46,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void pontuarCliente() {
-        startActivity(new Intent(getBaseContext(),QrCodeActivity.class));
+        startActivity(new Intent(getBaseContext(),QrCodeActivity.class).putExtra("PONTUAR",true));
     }
 
     public void btnVoucher(){
-        startActivity(new Intent(getBaseContext(),QrCodeActivity.class));
+        startActivity(new Intent(getBaseContext(),QrCodeActivity.class).putExtra("PONTUAR",false));
     }
 
     public void btnHome() {

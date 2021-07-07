@@ -91,8 +91,8 @@ public class PontuarActivity extends AppCompatActivity {
         }
         if (tipo.equals("VALOR")) {
             textView_Tipo.setText("Valor:");
-            textView_Descricao.setText("Atribua o valor do cupom.");
-            editText_Tipo2.setText("Adicione o valor");
+            textView_Descricao.setHint("Atribua o valor do cupom.");
+            editText_Tipo2.setHint("Adicione o valor");
 
         }
 
