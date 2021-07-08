@@ -23,6 +23,8 @@ public class PontuarActivity extends AppCompatActivity {
     private EditText editText_Tipo2;
     private Button btn_pontuar_cliente;
     private double quantidade;
+    private float quantitativo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,9 @@ public class PontuarActivity extends AppCompatActivity {
         btn_pontuar_cliente = findViewById(R.id.btn_pontuar_cliente);
         btn_Home = findViewById(R.id.logout_text);
         id = preferences.getInt("ID", 0);
+        quantitativo = preferences.getFloat("PONTUACAO",0);
         tipo = preferences.getString("TIPOPONTUACAO", "");
+
         setViewTexts();
 
         btn_pontuar_cliente.setOnClickListener(v -> {
@@ -60,7 +64,7 @@ public class PontuarActivity extends AppCompatActivity {
         int count = 0;
 
         quantidade = Double.parseDouble(String.valueOf(editText_Tipo2.getText()));
-        for (int i = 3; i <= quantidade; i += 3) {
+        for (float i = quantitativo; i <= quantidade; i += quantitativo) {
             count++;
         }
         textView_Resultado.setText("");
