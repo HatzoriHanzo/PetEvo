@@ -18,7 +18,7 @@ public class SucessoActivity extends AppCompatActivity {
 
 
         btn_homePage.setOnClickListener(v -> {
-            Intent intent = new Intent(this,LoginActivity.class);
+            Intent intent = new Intent(this,HomeActivity.class);
             startActivity(intent);
 
         });

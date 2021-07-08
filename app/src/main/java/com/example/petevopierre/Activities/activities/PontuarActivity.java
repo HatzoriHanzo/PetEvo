@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +17,13 @@ import com.example.petevopierre.R;
 
 public class PontuarActivity extends AppCompatActivity {
     private int id;
-    private String tipo;
-    private TextView textView_Tipo, textView_Descricao, textView_Resultado,btn_Home;
+    private String tipo, username;
+    private TextView textView_Tipo, textView_Descricao, textView_Resultado, btn_Home;
     private EditText editText_Tipo2;
     private Button btn_pontuar_cliente;
     private double quantidade;
     private float quantitativo;
+    private boolean loggedIn;
 
 
     @Override
@@ -34,12 +34,14 @@ public class PontuarActivity extends AppCompatActivity {
         btn_pontuar_cliente = findViewById(R.id.btn_pontuar_cliente);
         btn_Home = findViewById(R.id.logout_text);
         id = preferences.getInt("ID", 0);
-        quantitativo = preferences.getFloat("PONTUACAO",0);
+        quantitativo = preferences.getFloat("PONTUACAO", 0);
         tipo = preferences.getString("TIPOPONTUACAO", "");
+        username = preferences.getString("USERNAME", "");
 
         setViewTexts();
 
         btn_pontuar_cliente.setOnClickListener(v -> {
+
             pontuar();
             Toast.makeText(this,
                     "Os pontos estão sendo computados...",
@@ -47,34 +49,28 @@ public class PontuarActivity extends AppCompatActivity {
             Intent intent = (new Intent(this, SucessoActivity.class));
             startActivity(intent);
 
-            btn_Home.setOnClickListener(v1 ->btnHome());
 
         });
+        btn_Home.setOnClickListener(v1 -> btnHome());
 
     }
 
-    @Override
-    protected void onResume() {
-
-
-        super.onResume();
-    }
 
     private void pontuar() {
         int count = 0;
-
         quantidade = Double.parseDouble(String.valueOf(editText_Tipo2.getText()));
+
         for (float i = quantitativo; i <= quantidade; i += quantitativo) {
             count++;
         }
-        textView_Resultado.setText("");
         textView_Resultado.setText("" + count);
-
     }
 
     public void btnHome() {
-        startActivity(new Intent(getBaseContext(), LoginActivity.class));
-        Log.e("aaaaaaaaaaaaaaaa","aaaaaaaaaaaaaaaaaaaa");
+        SharedPreferences.Editor editor = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE).edit();
+        editor.putString("USERNAME", username);
+        editor.apply();
+        startActivity(new Intent(getBaseContext(), HomeActivity.class));
     }
 
 

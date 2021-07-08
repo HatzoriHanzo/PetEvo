@@ -21,8 +21,7 @@
         <activity android:name=".Activities.activities.PontuarActivity" />
         <activity android:name=".Activities.activities.QrCodeActivity" />
         <activity android:name=".Activities.activities.HomeActivity" />
-        <activity android:name=".Activities.activities.LoginActivity"
-            android:theme="@style/Theme.PetEvoPierre.NoActionBar"/>
+        <activity android:name=".Activities.activities.LoginActivity"/>
         <activity android:name=".Activities.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

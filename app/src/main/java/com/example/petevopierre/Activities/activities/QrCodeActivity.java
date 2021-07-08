@@ -81,6 +81,7 @@ public class QrCodeActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(int responseCode, Object object) {
                             if (responseCode == 200) {
+                                boolean loggedIn;
                                 int lojaid;
                                 float quantitativo;
                                 String tipoPontucao;
@@ -129,11 +130,14 @@ public class QrCodeActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Exception exception) {
-
+                            Toast.makeText(getApplicationContext(), "Código QR Code Não consta no nosso sistema!", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     });
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
+
+
                 }
 
 //                finishAffinity();
