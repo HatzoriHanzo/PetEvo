@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Pet Evo Pierre</string>
     <string name="mensagem_ler_qrcode">Aponte para o QR Code</string>
+    <string name="Quantidade">Quantidade:</string>
+    <string name="Valor">Valor:</string>
 
 </resources>
