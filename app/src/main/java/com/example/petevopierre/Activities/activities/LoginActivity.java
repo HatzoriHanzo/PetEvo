@@ -85,8 +85,9 @@ public class LoginActivity extends AppCompatActivity {
                             loggedIn = true;
                             editor.putBoolean("LOGGEDIN",loggedIn);
                             editor.putString("USERNAME",username);
-                            editor.apply();
                             editor.putBoolean("ISLOGGEDIN",loggedIn);
+                            editor.apply();
+
                             usuarioBo.clean();
                             usuarioBo.insert(usuario);
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

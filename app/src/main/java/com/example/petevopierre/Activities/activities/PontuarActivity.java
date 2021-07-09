@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,17 +41,7 @@ public class PontuarActivity extends AppCompatActivity {
 
         setViewTexts();
 
-        btn_pontuar_cliente.setOnClickListener(v -> {
-
-            pontuar();
-            Toast.makeText(this,
-                    "Os pontos estão sendo computados...",
-                    Toast.LENGTH_LONG).show();
-            Intent intent = (new Intent(this, SucessoActivity.class));
-            startActivity(intent);
-
-
-        });
+        btn_pontuar_cliente.setOnClickListener(v -> pontuar());
         btn_Home.setOnClickListener(v1 -> btnHome());
 
     }
@@ -58,12 +49,32 @@ public class PontuarActivity extends AppCompatActivity {
 
     private void pontuar() {
         int count = 0;
-        quantidade = Double.parseDouble(String.valueOf(editText_Tipo2.getText()));
 
-        for (float i = quantitativo; i <= quantidade; i += quantitativo) {
-            count++;
+        Log.e("PONTUAR","VALOR = [" + editText_Tipo2.getText() +"]");
+
+        if (editText_Tipo2.getText() == null || editText_Tipo2.getText().toString().equals("")) {
+            Toast.makeText(this, "Campo vazio.", Toast.LENGTH_SHORT).show();
+        } else {
+
+            quantidade = Double.parseDouble(String.valueOf(editText_Tipo2.getText()));
+
+            for (float i = quantitativo; i <= quantidade; i += quantitativo) {
+                count++;
+            }
+            textView_Resultado.setText("" + count);
+
+            Toast.makeText(this,
+                    "Os pontos estão sendo computados...",
+                    Toast.LENGTH_LONG).show();
+
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                Intent intent = new Intent(PontuarActivity.this, SucessoActivity.class);
+                startActivity(intent);
+            }, 2000L);
+
         }
-        textView_Resultado.setText("" + count);
+
     }
 
     public void btnHome() {
@@ -81,12 +92,12 @@ public class PontuarActivity extends AppCompatActivity {
         textView_Resultado = findViewById(R.id.editTxtQuantidade);
 
         if (tipo.equals("QUANTIDADE")) {
-            textView_Tipo.setText("Quantidade:");
+            textView_Tipo.setText(R.string.Quantidade);
             textView_Descricao.setHint("Atribua o valor do cupom pela quantidade.");
             editText_Tipo2.setHint("Adicione a quantidade");
         }
         if (tipo.equals("VALOR")) {
-            textView_Tipo.setText("Valor:");
+            textView_Tipo.setText(R.string.Valor);
             textView_Descricao.setHint("Atribua o valor do cupom.");
             editText_Tipo2.setHint("Adicione o valor");
 
